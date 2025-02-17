@@ -8,3 +8,10 @@ resource "aws_instance" "name" {
     Environment = "Dev"  # You can add more tags if needed
   }
 }
+
+resource "aws_s3_bucket" "name" {
+
+  bucket = "thisistfbuckettt"
+  
+  
+}
