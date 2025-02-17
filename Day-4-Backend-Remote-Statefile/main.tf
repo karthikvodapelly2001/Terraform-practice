@@ -4,7 +4,7 @@ resource "aws_instance" "name" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "My-Server"  # This sets the instance name
+    Name = "My-Server-prod"  # This sets the instance name
     Environment = "Dev"  # You can add more tags if needed
   }
 }
