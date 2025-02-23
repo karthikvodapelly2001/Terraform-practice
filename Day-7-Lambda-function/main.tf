@@ -4,7 +4,7 @@ resource "aws_lambda_function" "prodLambda" {
 
   function_name = "my-terraform-lambda"
   runtime       = "python3.13"
-  role = "arn:aws:iam::675717365613:role/aws-tf-lambda"
+  role          = "arn:aws:iam::675717365613:role/aws-tf-lambda"
   handler       = "lambda_fun.lambda_handler"
 
   filename         = "lambda_fun.zip" # Zip file containing the function
