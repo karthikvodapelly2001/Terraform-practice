@@ -10,15 +10,16 @@ module "prod-rds" {
   allocated_storage    = 5
   skip_final_snapshot  = true
   db_subnet_group_name = "default-vpc-071b68e75ce48911c"
-  db_name              = "prod-rdss"
+  db_name              = "prodrds"
   username             = "admin"
-  password             = "karthik@123"
+  password             = "karthik123"
 
   major_engine_version = "8.0"
   family               = "mysql8.0"
 
-  backup_retention_period = 1             # 🔥 Enable backups (Must be >=1)
-  backup_window           = "02:00-03:00" # Optional: Set backup time
+  backup_retention_period = 3           
+  manage_master_user_password = false
+ 
 
   vpc_security_group_ids = ["sg-072b7d394441bba0f"]
 
@@ -30,7 +31,7 @@ module "prod-rds" {
 
 module "prod-rds-replica" {
   providers = {
-    aws = aws.ap
+    aws = aws.us
   }
 
   source              = "terraform-aws-modules/rds/aws"
@@ -41,7 +42,8 @@ module "prod-rds-replica" {
   skip_final_snapshot = true
 
 
-  replicate_source_db = module.prod-rds.arn
+  replicate_source_db = module.prod-rds.db_instance_identifier
+
 
   major_engine_version = "8.0"
   family               = "mysql8.0"
